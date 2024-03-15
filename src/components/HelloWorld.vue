@@ -1,12 +1,21 @@
 <script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+import { ref } from 'vue'
+
+const value = ref<string>('')
+const setValue = (payload: string) => (value.value = payload)
+
+const color = ref<string>('')
+const setColor = (payload: string) => (color.value = payload)
+
+defineExpose({
+  setValue,
+  setColor,
+})
 </script>
 
 <template>
   <div class="greetings">
-    <h1 class="green">{{ msg }}</h1>
+    <h1 class="green" :style="{ color }">{{ value }}</h1>
   </div>
 </template>
 
